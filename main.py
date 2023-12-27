@@ -125,15 +125,20 @@ class NasreddinHoca:
             ]
             }
         self.onceki_fikra_index = None
+
     def bir_fikra_getir(self):
         yeni_index = self.onceki_fikra_index
         while yeni_index == self.onceki_fikra_index:
             yeni_index = random.randint(0, len(self.fikralar[self.dil]) - 1)
 
         self.onceki_fikra_index = yeni_index
-        return f"{self.isim} diyor ki:\n{self.fikralar[self.dil][yeni_index]}"
-
+        return f"{self.isim} says:\n{self.fikralar[self.dil][yeni_index]}"
+gecerli_diller = ['tr', 'en']
 secilen_dil = input("Lütfen dil seçin/Please select your language (tr/en): ").lower()
+while secilen_dil not in gecerli_diller:
+    print("Geçersiz dil. Lütfen 'tr' veya 'en' girin.")
+    secilen_dil = input("Lütfen dil seçin/Please select your language (tr/en): ").lower()
+
 kullanici_isim = input("Lütfen isminizi girin/Write your name: ")
 nasreddin_hoca = NasreddinHoca(kullanici_isim, secilen_dil)
 print(nasreddin_hoca.bir_fikra_getir())
